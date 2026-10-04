@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>卡密自动对半切分器</title></head>
+<body style="padding:30px;font-family:'Microsoft YaHei',sans-serif;background:#f5f7fa">
+  <h2>✂️ 阿奇索/闲管家 超长卡密一键切分器</h2>
+  <p>把原始超长卡密粘贴到下方框内，点击按钮即可自动在第220个字符处插入空格并复制：</p>
+  <textarea id="in" style="width:100%;height:220px;padding:10px;border-radius:6px;border:1px solid #ccc" placeholder="在此粘贴原始卡密（一行一条）..."></textarea>
+  <br><br>
+  <button onclick="let lines=document.getElementById('in').value.trim().split('\n');document.getElementById('out').value=lines.map(l=>l.slice(0,220)+' '+l.slice(220)).join('\n');document.getElementById('out').select();document.execCommand('copy');alert('✅ 切分完成并已自动复制到剪贴板！直接去阿奇索选【空格】分隔粘贴即可！')" style="padding:12px 30px;font-size:18px;font-weight:bold;background:#1890ff;color:#fff;border:none;border-radius:6px;cursor:pointer">⚡ 一键切分并自动复制</button>
+  <br><br>
+  <textarea id="out" style="width:100%;height:220px;padding:10px;border-radius:6px;border:1px solid #ccc" placeholder="切分后的结果会显示在这里..."></textarea>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>客服微信</title>
+<style>
+  /* 页面居中，背景和导航页保持一致的高级灰 */
+  body {
+    margin: 0;
+    background-color: #f4f5f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: -apple-system, sans-serif;
+  }
+  
+  /* 给二维码加个漂亮的白色卡片底座 */
+  .qr-card {
+    background: #fff;
+    padding: 30px 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    text-align: center;
+    width: 75%;
+    max-width: 320px;
+  }
+  
+  /* 核心：限制图片最大只能占满卡片宽度，绝不撑爆屏幕 */
+  .qr-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  
+  .title { font-size: 18px; color: #333; font-weight: bold; margin: 0 0 8px; }
+  .desc { font-size: 13px; color: #888; margin: 0; }
+</style>
+</head>
+<body>
+
+  <div class="qr-card">
+    <!-- 这里自动调用你已经上传好的 wx.png 图片 -->
+    <img src="wx.png" alt="客服微信二维码">
+    <p class="title">长按保存二维码</p>
+    <p class="desc">或截图后打开微信“扫一扫”识别</p>
+  </div>
+
+</body>
+</html>

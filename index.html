@@ -51,7 +51,9 @@
   </a>
 
   <!-- 3. 核心：调用同行的真实取件工具 (高度自动减去顶部的52px) -->
-  <iframe src="https://mail.xiongmaodianjing.top/token" style="width: 100%; height: calc(100vh - 52px); border: none; display: block;"></iframe>
-
+<!-- 3. 核心：调用同行的真实取件工具，并通过负边距（margin-top）将同行的绿色标题栏向上顶出屏幕外裁掉 -->
+<div style="width: 100%; height: calc(100vh - 52px); overflow: hidden;">
+    <iframe src="https://mail.xiongmaodianjing.top/token" style="width: 100%; height: calc(100vh - 52px + 60px); border: none; display: block; margin-top: -60px;"></iframe>
+</div>
 </body>
 </html>

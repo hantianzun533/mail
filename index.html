@@ -9,11 +9,41 @@
   <div style="background:linear-gradient(90deg,#0052D4,#4364F7);color:#fff;height:52px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:bold;box-shadow:0 2px 10px rgba(0,0,0,0.2);position:relative;z-index:99">
     📧 微软 Outlook / Hotmail 免登极速取件中心
   </div>
-  <iframe src="https://mail.xiongmaodianjing.top/token" style="width:100%;height:calc(100vh - 52px);border:none"></iframe>
-  <!-- 开始：右上角悬浮引流广告（悬浮在同行网页上方） -->
-<a href="https://tgfff.com" target="_blank" style="position: fixed; top: 12px; right: 24px; z-index: 99999; background-color: rgba(255, 255, 255, 0.2); color: #ffffff; text-decoration: none; padding: 6px 15px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.4); font-size: 14px; font-family: sans-serif, 'Microsoft YaHei'; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+<!-- 开始：全端自动适配的悬浮广告 -->
+<style>
+  .tg-ad-btn {
+    position: fixed;
+    top: 10px;
+    right: 24px;
+    z-index: 99999;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 6px 15px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    font-size: 14px;
+    font-family: sans-serif, 'Microsoft YaHei';
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  /* 核心魔法：当屏幕宽度小于 768px（绝大多数手机屏幕）时，触发以下规则 */
+  @media screen and (max-width: 768px) {
+    .tg-ad-btn {
+      top: auto;           /* 取消顶部的固定 */
+      bottom: 30px;        /* 移到屏幕底部往上 30 像素的位置 */
+      right: 15px;         /* 靠右 15 像素 */
+      background-color: rgba(43, 87, 154, 0.95); /* 手机端将按钮背景颜色加深为不透明的蓝色，防止和底层文字混色 */
+      font-size: 13px;     /* 字体稍微调小一点 */
+      padding: 8px 14px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* 加深阴影，让按钮更有浮空感 */
+    }
+  }
+</style>
+
+<a href="https://tgfff.com" target="_blank" class="tg-ad-btn">
     💡 赞助商：跨境出海必备环境获取 👉
 </a>
-<!-- 结束：右上角悬浮引流广告 -->
+<!-- 结束：全端自动适配的悬浮广告 -->
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>账号极速取件</title>
+    <title>微软 Outlook / Hotmail 极速取件工具</title>
     <style>
         /* 重置基础样式，让 iframe 铺满全屏 */
         body, html {
@@ -12,6 +12,7 @@
             height: 100%;
             overflow: hidden;
             background-color: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
         
         .container {
@@ -31,33 +32,115 @@
             z-index: 1;
         }
 
-        /* 顶层覆盖贴纸（核心代码） */
+        /* 1. 顶层覆盖贴纸（覆盖原版天启Logo与副标题） */
         .custom-overlay {
             position: absolute;
-            top: 0px;       /* 距离顶部的位置 */
-            left: 0px;      /* 距离左侧的位置 */
-            width: 260px;   /* 贴纸宽度，足够挡住“天启”Logo即可 */
-            height: 60px;   /* 贴纸高度，与源网页导航栏高度对齐 */
-            background-color: #1e88e5; /* 颜色尽量提取源网页顶栏的主题蓝，使其融合 */
-            z-index: 99;    /* 必须大于 iframe 的层级 */
+            top: 0px;
+            left: 0px;
+            width: 380px;                    /* 足够覆盖天启Logo及副标题文字区域 */
+            height: 64px;                    /* 与源网页顶栏高度对齐 */
+            background: linear-gradient(135deg, #0d72d6 0%, #1585e8 100%); /* 精准匹配原网页顶栏主题蓝 */
+            z-index: 99;
             display: flex;
             align-items: center;
-            justify-content: center;
+            padding-left: 18px;
+            box-sizing: border-box;
             color: #ffffff;
-            font-size: 20px;
+            font-size: 16px;
             font-weight: bold;
-            font-family: sans-serif;
+            letter-spacing: 0.5px;
+            user-select: none;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+        }
+
+        /* 贴纸左侧的小图标点缀，提升专业度 */
+        .custom-overlay::before {
+            content: "📬";
+            font-size: 20px;
+            margin-right: 8px;
+        }
+
+        /* 2. 右下角强力吸睛引流悬浮按钮 */
+        .floating-treasure-box {
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            background-size: 200% 200%;
+            box-shadow: 0 4px 15px rgba(255, 75, 43, 0.45);
+            animation: pulse-wave 2s infinite ease-in-out, gradient-flow 3s ease infinite;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .floating-treasure-box:hover {
+            transform: scale(1.06);
+            box-shadow: 0 6px 20px rgba(255, 75, 43, 0.65);
+        }
+
+        /* 呼吸跳动与流光动画特效 */
+        @keyframes pulse-wave {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 75, 43, 0.6);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 0 14px rgba(255, 75, 43, 0);
+                transform: scale(1.03);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 75, 43, 0);
+                transform: scale(1);
+            }
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 移动端自适应微调，防止占满窄屏 */
+        @media (max-width: 600px) {
+            .custom-overlay {
+                width: 300px;
+                font-size: 14px;
+                height: 58px;
+            }
+            .floating-treasure-box {
+                bottom: 15px;
+                right: 15px;
+                padding: 10px 14px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 你的专属品牌贴纸，用于挡住原Logo -->
+        <!-- 1. 左上角专属标题贴纸 -->
         <div class="custom-overlay">
-            星河专属取件系统
+            微软 Outlook / Hotmail 极速取件工具
         </div>
+
+        <!-- 2. 右下角动态引流百宝箱 -->
+        <a class="floating-treasure-box" href="https://hantianzun533.github.io/mail/nav.html" target="_blank" title="点击直达">
+            <span>🎁</span>
+            <span>【点击获取】全平台注册秘籍【百宝箱】</span>
+        </a>
         
-        <!-- 目标源头网页 -->
+        <!-- 底层目标源头网页 -->
         <iframe src="https://youju.tianqi996.com/" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
     </div>
 </body>

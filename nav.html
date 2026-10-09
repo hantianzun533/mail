@@ -1,171 +1,350 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>海外账号批发 - 官方导航</title>
-<style>
-  /* 基础背景与字体设置 */
-  body {
-    background-color: #f4f5f7;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  }
-  
-  /* 主容器：限制最大宽度，手机端全屏，电脑端居中显高级 */
-  .container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    text-align: center;
-  }
-  
-  /* 顶部头像样式 */
-  .avatar {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background-color: #ffffff;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    margin: 0 auto 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  
-  /* 确保头像图片完美填充满圆形 */
-  .avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  /* 标题与描述文本 */
-  h1 { font-size: 18px; color: #000; margin: 0 0 10px; font-weight: bold; }
-  .desc {
-    font-size: 13px;
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    white-space: pre-line;
-  }
-  
-  /* 必看重点提示 */
-  .highlight-text {
-    font-size: 14px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-    line-height: 1.5;
-  }
-  
-  /* 按钮列表容器 */
-  .links-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  /* 每一个按钮的样式 */
-  .link-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #fff;
-    padding: 16px 20px;
-    border-radius: 12px;
-    text-decoration: none;
-    color: #333;
-    font-size: 15px;
-    font-weight: 500;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-  }
-  
-  /* 点击时的反馈效果 */
-  .link-item:active {
-    transform: scale(0.98);
-    background-color: #f9f9f9;
-  }
-  
-  .link-left { display: flex; align-items: center; gap: 15px; }
-  .link-icon { font-size: 22px; }
-  .arrow { color: #ccc; font-weight: bold; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外账号批发-官方导航</title>
+    <style>
+        /* 基础背景与字体设置 */
+        body {
+            background-color: #f4f5f7;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            overflow-x: hidden;
+        }
 
-<!-- 👇 你的专属百度统计探针代码 👇 -->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?428ba24cec82c4d3191afacc5a64ef74";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-<!-- 👆 百度统计代码结束 👆 -->
+        /* 主容器 */
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
 
+        /* 顶部头像样式 */
+        .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 标题与描述文本 */
+        h1 {
+            font-size: 18px;
+            color: #000;
+            margin: 0 0 10px;
+            font-weight: bold;
+        }
+
+        .desc {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            white-space: pre-line;
+        }
+
+        /* 必看重点提示 */
+        .highlight-text {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        /* 按钮列表容器 */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* 每一个按钮的样式 */
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            padding: 16px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #333;
+            font-size: 15px;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+        }
+
+        .link-item:active {
+            transform: scale(0.98);
+            background-color: #f9f9f9;
+        }
+
+        .link-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .link-icon {
+            font-size: 22px;
+        }
+
+        .arrow {
+            color: #ccc;
+            font-weight: bold;
+        }
+
+        /* ================= 强制警示弹窗样式 ================= */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 420px;
+            border-radius: 18px;
+            padding: 25px 22px;
+            box-sizing: border-box;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            animation: modalPop 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+        }
+
+        @keyframes modalPop {
+            0% { transform: scale(0.85); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-header-icon {
+            font-size: 42px;
+            margin-bottom: 8px;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d32f2f;
+            margin-bottom: 12px;
+        }
+
+        .modal-body {
+            font-size: 14px;
+            line-height: 1.65;
+            color: #333333;
+            background: #fff8f8;
+            border: 1px solid #ffcdd2;
+            padding: 14px;
+            border-radius: 10px;
+            text-align: left;
+            margin-bottom: 18px;
+        }
+
+        .modal-body b {
+            color: #d32f2f;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .verify-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            outline: none;
+            text-align: center;
+            box-sizing: border-box;
+            letter-spacing: 2px;
+            font-weight: bold;
+            transition: border-color 0.2s;
+        }
+
+        .verify-input:focus {
+            border-color: #1976d2;
+        }
+
+        .confirm-btn {
+            width: 100%;
+            padding: 13px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 8px;
+            border: none;
+            background-color: #cccccc;
+            color: #ffffff;
+            cursor: not-allowed;
+            transition: all 0.3s ease;
+        }
+
+        /* 校验成功后的可点击状态 */
+        .confirm-btn.active {
+            background-color: #1976d2;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.4);
+            animation: pulse-btn 1.5s infinite;
+        }
+
+        @keyframes pulse-btn {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+    </style>
+
+    <!-- 你的专属百度统计探针代码 -->
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?428ba24cec82c4d3191afacc5a64ef74";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
 </head>
 <body>
 
-<div class="container">
-  
-  <!-- 头像区 -->
-  <div class="avatar">
-    <img src="https://tencentcdna.production.link3.cc/profile_images/1788425029147" alt="头像">
-  </div>
-  
-  <!-- 标题与介绍 -->
-  <h1>海外账号批发</h1>
-  <div class="desc">Tg飞机/电报成品号，+86号码登录问题
+    <!-- 1. 强制阅读与校验遮罩弹窗 -->
+    <div id="warningModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header-icon">⚠️</div>
+            <div class="modal-title">重要通告 · 必读确认</div>
+            <div class="modal-body">
+                电商平台<b>不方便回复任何海外注册账号话题，会封号</b>。如有需要再点击确认查看价格，你要的我们都有，有意向再联系微信客服，<b>不要再返回电商平台，电商客服不回复任何消息！</b>
+            </div>
+            
+            <div class="input-group">
+                <label for="codeInput">输入“<b style="color:#1976d2;">666</b>”确认已知晓规则：</label>
+                <input type="text" id="codeInput" class="verify-input" placeholder="请在此输入 666" maxlength="6" autocomplete="off">
+            </div>
+
+            <button id="submitBtn" class="confirm-btn" disabled>请先输入 666 确认</button>
+        </div>
+    </div>
+
+    <!-- 2. 主导航内容容器 -->
+    <div class="container">
+        <!-- 头像区 -->
+        <div class="avatar">
+            <img src="https://tencentedna.production.link3.cc/profile_images/1788425029147" alt="头像">
+        </div>
+
+        <!-- 标题与介绍 -->
+        <h1>海外账号批发</h1>
+        <div class="desc">Tg飞机/电报成品号，+86号码登录问题
 x推特号 谷歌Google号 Tiktok
 苹果ID ins facebook gpt whatsapp
 网络代理（梯子、加速器、VPN）等等</div>
-  
-  <div class="highlight-text">必看重点！！！人工发货与自动发货的产品业务不一样，你要的都有！请按需求选购</div>
-  
-  <!-- 核心跳转按钮区 -->
-  <div class="links-container">
-    
-    <!-- 按钮1：人工发货区 -->
-    <a href="https://docs.qq.com/doc/DY29hbVROSGR2Z09q" target="_blank" class="link-item">
-      <div class="link-left">
-        <span class="link-icon">⏩</span>
-        <span>人工发货区</span>
-      </div>
-      <span class="arrow">></span>
-    </a>
 
-    <!-- 按钮2：24小时自动发货区 -->
-    <a href="https://tgsss.com/CD70AD47" target="_blank" class="link-item">
-      <div class="link-left">
-        <span class="link-icon">👉</span>
-        <span>24小时自动发货区</span>
-      </div>
-      <span class="arrow">></span>
-    </a>
+        <div class="highlight-text">必看重点！！！人工发货与自动发货的产品业务不一样，你要的都有！请按需求选购</div>
 
-    <!-- 按钮3：客服微信 (调用你自己建好的微信二维码单页) -->
-    <a href="wx.html" target="_blank" class="link-item">
-      <div class="link-left">
-        <span class="link-icon">💬</span>
-        <span>客服微信</span>
-      </div>
-      <span class="arrow">></span>
-    </a>
+        <!-- 核心跳转按钮区 -->
+        <div class="links-container">
+            <!-- 按钮1: 人工发货区 -->
+            <a href="https://docs.qq.com/doc/DY29hbVROSGR2Z09q" target="_blank" class="link-item">
+                <div class="link-left">
+                    <span class="link-icon">⏩</span>
+                    <span>人工发货区</span>
+                </div>
+                <span class="arrow">&gt;</span>
+            </a>
 
-    <!-- 按钮4：备用Q群 -->
-    <a href="https://qm.qq.com/q/HZr0Za3mYQ" target="_blank" class="link-item">
-      <div class="link-left">
-        <span class="link-icon">🐧</span>
-        <span>备用Q群</span>
-      </div>
-      <span class="arrow">></span>
-    </a>
-    
-  </div>
-</div>
+            <!-- 按钮2: 24小时自动发货区 -->
+            <a href="https://tgsss.com/CD70AD47" target="_blank" class="link-item">
+                <div class="link-left">
+                    <span class="link-icon">👉</span>
+                    <span>24小时自动发货区</span>
+                </div>
+                <span class="arrow">&gt;</span>
+            </a>
 
+            <!-- 按钮3: 客服微信 -->
+            <a href="wx.html" target="_blank" class="link-item">
+                <div class="link-left">
+                    <span class="link-icon">💬</span>
+                    <span>客服微信</span>
+                </div>
+                <span class="arrow">&gt;</span>
+            </a>
+
+            <!-- 按钮4: 备用Q群 -->
+            <a href="https://qm.qq.com/q/HZrOZa3mYQ" target="_blank" class="link-item">
+                <div class="link-left">
+                    <span class="link-icon">🐧</span>
+                    <span>备用Q群</span>
+                </div>
+                <span class="arrow">&gt;</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 3. 输入校验交互驱动脚本 -->
+    <script>
+        const codeInput = document.getElementById('codeInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const modal = document.getElementById('warningModal');
+
+        // 监听输入事件，一旦输入 666 立即解锁按钮
+        codeInput.addEventListener('input', function() {
+            if (this.value.trim() === '666') {
+                submitBtn.disabled = false;
+                submitBtn.classList.add('active');
+                submitBtn.innerText = '我已知晓，确认进入';
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.classList.remove('active');
+                submitBtn.innerText = '请先输入 666 确认';
+            }
+        });
+
+        // 点击确认，平滑隐藏遮罩层
+        submitBtn.addEventListener('click', function() {
+            if (!this.disabled) {
+                modal.style.opacity = '0';
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
+            }
+        });
+    </script>
 </body>
 </html>

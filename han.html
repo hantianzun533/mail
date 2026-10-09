@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>账号极速取件</title>
+    <style>
+        /* 重置基础样式，让 iframe 铺满全屏 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #f0f2f5;
+        }
+        
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 底层套壳网页 */
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* 顶层覆盖贴纸（核心代码） */
+        .custom-overlay {
+            position: absolute;
+            top: 0px;       /* 距离顶部的位置 */
+            left: 0px;      /* 距离左侧的位置 */
+            width: 260px;   /* 贴纸宽度，足够挡住“天启”Logo即可 */
+            height: 60px;   /* 贴纸高度，与源网页导航栏高度对齐 */
+            background-color: #1e88e5; /* 颜色尽量提取源网页顶栏的主题蓝，使其融合 */
+            z-index: 99;    /* 必须大于 iframe 的层级 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 你的专属品牌贴纸，用于挡住原Logo -->
+        <div class="custom-overlay">
+            星河专属取件系统
+        </div>
+        
+        <!-- 目标源头网页 -->
+        <iframe src="https://youju.tianqi996.com/" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+    </div>
+</body>
+</html>

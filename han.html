@@ -38,7 +38,7 @@
             top: 0px;
             left: 0px;
             height: 52px;              /* 精确对应原导航栏中 Logo+两行文字的高度 */
-            width: 255px;               /* 精准覆盖文字宽度，不右延突兀 */
+            width: 255px;              /* 精准覆盖文字宽度，不右延突兀 */
             background: linear-gradient(135deg, #0e72d6 0%, #1686e9 100%); /* 匹配原图背景蓝 */
             z-index: 99;
             display: flex;
@@ -143,6 +143,36 @@
             100% { background-position: 0% 50%; }
         }
 
+        /* 3. 阅后即焚（灰烬碎裂解体）动效 */
+        .burn-out-effect {
+            animation: burn-disintegrate 0.65s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+            pointer-events: none; /* 防止买家二次重复点击 */
+        }
+
+        @keyframes burn-disintegrate {
+            0% {
+                transform: scale(1);
+                filter: blur(0px) brightness(1);
+                opacity: 1;
+            }
+            25% {
+                transform: scale(1.08) rotate(-1deg);
+                filter: blur(1px) brightness(1.6);
+                box-shadow: 0 0 25px rgba(255, 50, 0, 0.85);
+            }
+            60% {
+                transform: scale(1.2) translateY(-10px) rotate(1.5deg);
+                filter: blur(5px) brightness(2.2);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1.35) translateY(-25px);
+                filter: blur(14px) brightness(0.2);
+                opacity: 0;
+                display: none;
+            }
+        }
+
         /* 移动端窄屏自适应 */
         @media (max-width: 600px) {
             .custom-overlay {
@@ -181,13 +211,26 @@
             </div>
         </div>
 
-        <!-- 2. 右下角引流百宝箱 -->
-        <a class="floating-treasure-box" href="https://hantianzun533.github.io/mail/nav.html" target="_blank" title="点击直达">
+        <!-- 2. 右下角引流百宝箱（挂载阅后即焚触发事件） -->
+        <a id="treasureBtn" class="floating-treasure-box" href="https://hantianzun533.github.io/mail/nav.html" target="_blank" title="点击直达" onclick="burnAfterReading(this)">
             <span>【点击获取】全平台注册秘籍【百宝箱】</span>
         </a>
         
         <!-- 底层目标源头网页 -->
         <iframe src="https://youju.tianqi996.com/" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
     </div>
+
+    <!-- 4. 阅后即焚驱动脚本 -->
+    <script>
+        function burnAfterReading(element) {
+            // 立即停止呼吸波纹，激活粒子消散类
+            element.classList.add('burn-out-effect');
+            
+            // 动效结束后彻底将DOM元素从页面移除，杜绝残留
+            setTimeout(function() {
+                element.style.display = 'none';
+            }, 650);
+        }
+    </script>
 </body>
 </html>

@@ -32,7 +32,7 @@
             z-index: 1;
         }
 
-        /* 1. 精准对齐原版文字框的覆盖层（加 pointer-events: none 防止阻挡右侧按钮） */
+        /* 1. 左上角遮罩层 */
         .custom-overlay {
             position: absolute;
             top: 0px;
@@ -46,7 +46,6 @@
             padding: 0 10px;
             box-sizing: border-box;
             user-select: none;
-            /* 关键：确保即使有极其微小的像素重叠，也不会阻挡原网页顶栏按钮的点击 */
             pointer-events: auto;
         }
 
@@ -90,7 +89,7 @@
             margin-top: 1px;
         }
 
-        /* 2. 右下角动态引流百宝箱 */
+        /* 2. 右下角常驻引流百宝箱 */
         .floating-treasure-box {
             position: absolute;
             bottom: 25px;
@@ -140,36 +139,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* 3. 阅后即焚动效 */
-        .burn-out-effect {
-            animation: burn-disintegrate 0.65s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
-            pointer-events: none;
-        }
-
-        @keyframes burn-disintegrate {
-            0% {
-                transform: scale(1);
-                filter: blur(0px) brightness(1);
-                opacity: 1;
-            }
-            25% {
-                transform: scale(1.08) rotate(-1deg);
-                filter: blur(1px) brightness(1.6);
-                box-shadow: 0 0 25px rgba(255, 50, 0, 0.85);
-            }
-            60% {
-                transform: scale(1.2) translateY(-10px) rotate(1.5deg);
-                filter: blur(5px) brightness(2.2);
-                opacity: 0.7;
-            }
-            100% {
-                transform: scale(1.35) translateY(-25px);
-                filter: blur(14px) brightness(0.2);
-                opacity: 0;
-                display: none;
-            }
-        }
-
         @media (max-width: 600px) {
             .custom-overlay {
                 width: 235px;
@@ -207,24 +176,14 @@
             </div>
         </div>
 
-        <!-- 2. 右下角引流百宝箱 -->
-        <a id="treasureBtn" class="floating-treasure-box" href="/nav.html" target="_blank" title="点击直达" onclick="burnAfterReading(this)">
+        <!-- 2. 右下角常驻引流百宝箱（支持新标签页打开，常驻不消失） -->
+        <a id="treasureBtn" class="floating-treasure-box" href="/nav.html" target="_blank" title="点击直达">
             <span>🎁</span>
             <span>【点击获取】全平台注册秘籍【百宝箱】</span>
         </a>
         
-        <!-- 核心改动：彻底移除 sandbox 限制，还原完整操作权限（支持文件导出与全量清空确认） -->
+        <!-- 底层工具网页 -->
         <iframe src="https://youju.tianqi996.com/"></iframe>
     </div>
-
-    <!-- 3. 驱动脚本 -->
-    <script>
-        function burnAfterReading(element) {
-            element.classList.add('burn-out-effect');
-            setTimeout(function() {
-                element.style.display = 'none';
-            }, 650);
-        }
-    </script>
 </body>
 </html>

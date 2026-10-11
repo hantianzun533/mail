@@ -139,6 +139,86 @@
             100% { background-position: 0% 50%; }
         }
 
+        /* 3. 提示弹窗蒙层与卡片样式 */
+        .tip-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(3px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .tip-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 340px;
+            border-radius: 16px;
+            padding: 24px 20px;
+            box-sizing: border-box;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+            text-align: center;
+            animation: tipPop 0.25s ease-out;
+        }
+
+        @keyframes tipPop {
+            0% { transform: scale(0.85); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .tip-icon {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .tip-title {
+            font-size: 17px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 12px;
+        }
+
+        .tip-content {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            background: #fff8f5;
+            border: 1px dashed #ff8e53;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .tip-content b {
+            color: #ff4500;
+        }
+
+        .tip-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: #ffffff;
+            border: none;
+            padding: 12px 0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 75, 43, 0.35);
+            transition: all 0.2s;
+        }
+
+        .tip-btn:active {
+            transform: scale(0.97);
+        }
+
         @media (max-width: 600px) {
             .custom-overlay {
                 width: 235px;
@@ -166,8 +246,21 @@
     </style>
 </head>
 <body>
+    <!-- 提示弹窗（零倒计时，点已知晓秒关） -->
+    <div id="noticeModal" class="tip-modal-overlay">
+        <div class="tip-card">
+            <div class="tip-icon">🎁</div>
+            <div class="tip-title">使用提示 & 福利入口</div>
+            <div class="tip-content">
+                本工具支持全自动极速提取。<br>
+                页面<b>右下角【百宝箱】</b>内含全平台账号注册秘籍、网络工具及进阶福利，有需要可随时点击查阅！
+            </div>
+            <button class="tip-btn" onclick="closeNotice()">我已知晓，开始取件</button>
+        </div>
+    </div>
+
     <div class="container">
-        <!-- 1. 左上角贴纸 -->
+        <!-- 1. 左上角遮罩 -->
         <div class="custom-overlay">
             <div class="brand-icon">微 软</div>
             <div class="brand-text">
@@ -176,14 +269,20 @@
             </div>
         </div>
 
-        <!-- 2. 右下角常驻引流百宝箱（支持新标签页打开，常驻不消失） -->
+        <!-- 2. 右下角常驻引流百宝箱 -->
         <a id="treasureBtn" class="floating-treasure-box" href="/nav.html" target="_blank" title="点击直达">
             <span>🎁</span>
             <span>【点击获取】全平台注册秘籍【百宝箱】</span>
         </a>
         
-        <!-- 底层工具网页 -->
+        <!-- 3. 底层工具网页 -->
         <iframe src="https://youju.tianqi996.com/"></iframe>
     </div>
+
+    <script>
+        function closeNotice() {
+            document.getElementById('noticeModal').style.display = 'none';
+        }
+    </script>
 </body>
 </html>

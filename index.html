@@ -284,4 +284,290 @@
         }
     </script>
 </body>
+</html><!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微软 Outlook / Hotmail 极速取件工具</title>
+    <style>
+        /* 重置基础样式，让 iframe 铺满全屏 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 底层套壳网页 */
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* 1. 左上角遮罩层 */
+        .custom-overlay {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            height: 52px;
+            width: 255px;
+            background: linear-gradient(135deg, #0e72d6 0%, #1686e9 100%);
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            box-sizing: border-box;
+            user-select: none;
+            pointer-events: auto;
+        }
+
+        .brand-icon {
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 900;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            margin-right: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .title-main {
+            color: #ffffff;
+            font-size: 14.5px;
+            font-weight: bold;
+            line-height: 1.25;
+            letter-spacing: 0.3px;
+        }
+
+        .title-sub {
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 11px;
+            line-height: 1.35;
+            margin-top: 1px;
+        }
+
+        /* 2. 右下角常驻引流百宝箱 */
+        .floating-treasure-box {
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            background-size: 200% 200%;
+            box-shadow: 0 4px 15px rgba(255, 75, 43, 0.45);
+            animation: pulse-wave 2s infinite ease-in-out, gradient-flow 3s ease infinite;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .floating-treasure-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 75, 43, 0.65);
+        }
+
+        @keyframes pulse-wave {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 75, 43, 0.6);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 0 12px rgba(255, 75, 43, 0);
+                transform: scale(1.03);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 75, 43, 0);
+                transform: scale(1);
+            }
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 3. 提示弹窗蒙层与卡片样式 */
+        .tip-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(3px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .tip-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 340px;
+            border-radius: 16px;
+            padding: 24px 20px;
+            box-sizing: border-box;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+            text-align: center;
+            animation: tipPop 0.25s ease-out;
+        }
+
+        @keyframes tipPop {
+            0% { transform: scale(0.85); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .tip-icon {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .tip-title {
+            font-size: 17px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 12px;
+        }
+
+        .tip-content {
+            font-size: 14.5px;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            background: #fff8f5;
+            border: 1px dashed #ff8e53;
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .tip-content b {
+            color: #ff4500;
+        }
+
+        .tip-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: #ffffff;
+            border: none;
+            padding: 12px 0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 75, 43, 0.35);
+            transition: all 0.2s;
+        }
+
+        .tip-btn:active {
+            transform: scale(0.97);
+        }
+
+        @media (max-width: 600px) {
+            .custom-overlay {
+                width: 235px;
+                height: 48px;
+            }
+            .brand-icon {
+                width: 30px;
+                height: 30px;
+                min-width: 30px;
+                font-size: 11px;
+            }
+            .title-main {
+                font-size: 13px;
+            }
+            .title-sub {
+                font-size: 10px;
+            }
+            .floating-treasure-box {
+                bottom: 15px;
+                right: 15px;
+                padding: 9px 14px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 提示弹窗（精简单行强引流） -->
+    <div id="noticeModal" class="tip-modal-overlay">
+        <div class="tip-card">
+            <div class="tip-icon">🎁</div>
+            <div class="tip-title">使用提示 & 福利入口</div>
+            <div class="tip-content">
+                页面<b>右下角【百宝箱】</b>有惊喜，有需要可随时点击查阅！
+            </div>
+            <button class="tip-btn" onclick="closeNotice()">我已知晓，开始取件</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 1. 左上角遮罩 -->
+        <div class="custom-overlay">
+            <div class="brand-icon">微 软</div>
+            <div class="brand-text">
+                <span class="title-main">Outlook / Hotmail</span>
+                <span class="title-sub">极速取件工具</span>
+            </div>
+        </div>
+
+        <!-- 2. 右下角常驻引流百宝箱 -->
+        <a id="treasureBtn" class="floating-treasure-box" href="/nav.html" target="_blank" title="点击直达">
+            <span>🎁</span>
+            <span>【点击获取】全平台注册秘籍【百宝箱】</span>
+        </a>
+        
+        <!-- 3. 底层工具网页 -->
+        <iframe src="https://youju.tianqi996.com/"></iframe>
+    </div>
+
+    <script>
+        function closeNotice() {
+            document.getElementById('noticeModal').style.display = 'none';
+        }
+    </script>
+</body>
 </html>

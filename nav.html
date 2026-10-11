@@ -256,7 +256,7 @@
             background-color: rgba(0, 0, 0, 0.65);
             backdrop-filter: blur(5px);
             z-index: 100000;
-            display: none; /* 默认隐藏 */
+            display: none;
             align-items: center;
             justify-content: center;
             padding: 20px;
@@ -345,7 +345,8 @@
                 电商平台<b>不回复任何海外注册购买账号等敏感话题，会封号！</b>你要的我们都有，咨询下单直接联系微信客服，<b>不要再返回电商平台，电商客服不回复任何咨询消息！</b>
             </div>
 
-            <button id="submitBtn" class="confirm-btn" disabled>请仔细阅读重要提示 (10s)</button>
+            <!-- 按钮初始文字已改为 5s -->
+            <button id="submitBtn" class="confirm-btn" disabled>请仔细阅读重要提示 (5s)</button>
         </div>
     </div>
 
@@ -385,15 +386,14 @@ x推特号 谷歌Google号 Tiktok
                 <span class="arrow">&gt;</span>
             </a>
 
-        <!-- 按钮3: 客服微信（直接跳转腾讯文档） -->
-<a href="https://docs.qq.com/doc/DY29hbVROSGR2Z09q" target="_blank" class="link-item link-item-wx">
-    <div class="link-left">
-        <span class="link-icon">💬</span>
-        <span>客服微信（重点推荐）</span>
-    </div>
-    <span class="arrow">&gt;</span>
-</a>
-              
+            <!-- 按钮3: 客服微信（直链跳转腾讯文档） -->
+            <a href="https://docs.qq.com/doc/DY29hbVROSGR2Z09q" target="_blank" class="link-item link-item-wx">
+                <div class="link-left">
+                    <span class="link-icon">💬</span>
+                    <span>客服微信（重点推荐）</span>
+                </div>
+                <span class="arrow">&gt;</span>
+            </a>
 
             <!-- 按钮4: 备用Q群 -->
             <div class="link-item" onclick="showQQDialog(event)">
@@ -422,8 +422,8 @@ x推特号 谷歌Google号 Tiktok
 
     <!-- 4. 逻辑脚本 -->
     <script>
-        // 1. 倒计时提示框逻辑
-        let countdown = 10;
+        // 1. 倒计时提示框逻辑（已调整为 5 秒）
+        let countdown = 5;
         const submitBtn = document.getElementById('submitBtn');
         const warningModal = document.getElementById('warningModal');
 
@@ -468,7 +468,6 @@ x推特号 谷歌Google号 Tiktok
         function executeCopyQQ() {
             const text = '716752493';
             
-            // 兜底高兼容复制
             const textArea = document.createElement("textarea");
             textArea.value = text;
             textArea.style.position = "fixed";

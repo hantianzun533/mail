@@ -88,7 +88,7 @@
             margin-top: 1px;
         }
 
-        /* 2. 右下角引流百宝箱 */
+        /* 2. 右下角引流：进入跨境小店（带循环高光闪亮特效） */
         .floating-treasure-box {
             position: absolute;
             bottom: 25px;
@@ -97,29 +97,73 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 11px 18px;
+            padding: 12px 22px;
             border-radius: 50px;
             text-decoration: none;
             color: #ffffff;
             font-weight: bold;
-            font-size: 14px;
-            letter-spacing: 0.5px;
+            font-size: 15px;
+            letter-spacing: 0.8px;
             background: linear-gradient(135deg, #ff416c, #ff4b2b);
             background-size: 200% 200%;
             box-shadow: 0 4px 15px rgba(255, 75, 43, 0.45);
             animation: pulse-wave 2s infinite ease-in-out, gradient-flow 3s ease infinite;
             cursor: pointer;
             transition: transform 0.2s ease;
+            overflow: hidden;
+        }
+
+        /* 循环扫光高光层 */
+        .floating-treasure-box::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -75%;
+            width: 50%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.65) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(25deg);
+            animation: shine-sweep 2.4s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        /* 文字循环闪亮呼吸发光 */
+        .shop-text-glow {
+            position: relative;
+            z-index: 2;
+            animation: text-flash 2.4s infinite ease-in-out;
         }
 
         .floating-treasure-box:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(255, 75, 43, 0.65);
+            transform: scale(1.06);
+            box-shadow: 0 6px 22px rgba(255, 75, 43, 0.7);
+        }
+
+        @keyframes shine-sweep {
+            0% { left: -75%; }
+            45% { left: 135%; }
+            100% { left: 135%; }
+        }
+
+        @keyframes text-flash {
+            0%, 100% {
+                text-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+                opacity: 0.95;
+            }
+            50% {
+                text-shadow: 0 0 10px #ffffff, 0 0 18px #fff59d;
+                opacity: 1;
+            }
         }
 
         @keyframes pulse-wave {
             0% {
-                box-shadow: 0 0 0 0 rgba(255, 75, 43, 0.6);
+                box-shadow: 0 0 0 0 rgba(255, 75, 43, 0.65);
                 transform: scale(1);
             }
             50% {
@@ -147,7 +191,7 @@
             height: 100vh !important;
             background-color: rgba(0, 0, 0, 0.65) !important;
             backdrop-filter: blur(4px);
-            z-index: 2147483647 !important; /* 最高层级 */
+            z-index: 2147483647 !important;
             display: flex !important;
             align-items: center;
             justify-content: center;
@@ -243,10 +287,10 @@
                 font-size: 10px;
             }
             .floating-treasure-box {
-                bottom: 15px;
-                right: 15px;
-                padding: 9px 14px;
-                font-size: 12px;
+                bottom: 16px;
+                right: 16px;
+                padding: 10px 16px;
+                font-size: 13px;
             }
         }
     </style>
@@ -262,23 +306,23 @@
             </div>
         </div>
 
-        <!-- 2. 右下角常驻引流百宝箱 -->
-        <a id="treasureBtn" class="floating-treasure-box" href="/nav.html" target="_blank" title="点击直达">
-            <span>🎁</span>
-            <span>【点击获取】全平台注册秘籍【百宝箱】</span>
+        <!-- 2. 右下角常驻引流按钮（保持指向 /nav.html） -->
+        <a id="treasureBtn" class="floating-treasure-box" href="/nav.html" target="_blank" title="点击进入跨境小店">
+            <span style="position: relative; z-index: 2;">🛍️</span>
+            <span class="shop-text-glow">进入跨境小店</span>
         </a>
         
         <!-- 3. 底层工具网页 -->
         <iframe src="https://youju.tianqi996.com/"></iframe>
     </div>
 
-    <!-- 4. 提示弹窗（内联原生 DOM 销毁，点击卡片按钮或遮罩背景直接秒删） -->
+    <!-- 4. 提示弹窗 -->
     <div id="noticeModal" class="tip-modal-overlay" onclick="this.remove()">
         <div class="tip-card" onclick="event.stopPropagation()">
-            <div class="tip-icon">🎁</div>
+            <div class="tip-icon">🛍️</div>
             <div class="tip-title">使用提示 & 福利入口</div>
             <div class="tip-content">
-                页面<b>右下角【百宝箱】</b>有惊喜，有需要可随时点击查阅！
+                页面<b>右下角【进入跨境小店】</b>有惊喜，海量海外账号与工具可随时点击选购！
             </div>
             <button class="tip-btn" type="button" onclick="document.getElementById('noticeModal').remove()">我已知晓，开始取件</button>
         </div>

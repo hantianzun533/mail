@@ -157,11 +157,11 @@ x推特号 谷歌Google号 Tiktok
                 <span class="arrow">&gt;</span>
             </a>
 
-            <!-- 按钮3: 客服微信 -->
-            <a href="https://docs.qq.com/doc/DY0VhQk1OQ2JuenFm" target="_blank" class="link-item">
+            <!-- 按钮3: 在线客服 -->
+            <a href="javascript:void(0);" onclick="openOnlineChat(); return false;" class="link-item">
                 <div class="link-left">
                     <span class="link-icon">💬</span>
-                    <span>客服微信</span>
+                    <span>在线客服</span>
                 </div>
                 <span class="arrow">&gt;</span>
             </a>
@@ -176,6 +176,29 @@ x推特号 谷歌Google号 Tiktok
             </a>
         </div>
     </div>
+
+    <!-- Crisp 在线客服脚本 -->
+    <script type="text/javascript">
+      window.$crisp = [];
+      window.CRISP_WEBSITE_ID = "ad791399-15c2-4ece-a6f1-30585a6987e8";
+      $crisp.push(["do", "chat:hide"]);
+      $crisp.push(["on", "chat:closed", function() {
+        $crisp.push(["do", "chat:hide"]);
+      }]);
+
+      function openOnlineChat() {
+        $crisp.push(["do", "chat:show"]);
+        $crisp.push(["do", "chat:open"]);
+      }
+
+      (function() {
+        var d = document;
+        var s = d.createElement("script");
+        s.src = "https://client.crisp.chat/l.js";
+        s.async = 1;
+        d.getElementsByTagName("head")[0].appendChild(s);
+      })();
+    </script>
 
 </body>
 </html>

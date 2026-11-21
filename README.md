@@ -8,4 +8,3 @@
 | `nav.html` | https://tgfff.com/nav.html/https://mail.tgfff.com/nav.html | 闲鱼客户专用广告界面
 | `wx.html` | https://tgfff.com/wx.html | 早期微信展示页（已停用高危联系方式，建议留作备份或按需清理） |
 | `wx.png` | https://tgfff.com/wx.png | 早期二维码图片资源（与 `wx.html` 配套） |
-| `xiongmao_index.html` | https://tgfff.com/xiongmao_index.html | 熊猫套壳取件工具网页|

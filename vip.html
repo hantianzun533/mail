@@ -157,8 +157,8 @@ x推特号 谷歌Google号 Tiktok
                 <span class="arrow">&gt;</span>
             </a>
 
-            <!-- 按钮3: 在线客服 -->
-            <a href="javascript:void(0);" onclick="openOnlineChat(); return false;" class="link-item">
+            <!-- 按钮3: 在线客服（点击直接进入独立经典全屏对话页） -->
+            <a href="https://tawk.to/chat/6b02638e6bbbe33cde602384/1k80l9q6k" class="link-item">
                 <div class="link-left">
                     <span class="link-icon">💬</span>
                     <span>在线客服</span>
@@ -177,19 +177,13 @@ x推特号 谷歌Google号 Tiktok
         </div>
     </div>
 
-    <!-- Tawk.to 在线客服脚本（右下角常驻气泡 + 点击按钮双入口触发） -->
+    <!-- Tawk.to 在线客服脚本（右下角气泡点击后自动跳独立经典全屏页） -->
     <script type="text/javascript">
       var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-
-function openOnlineChat() {
-  if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
-    window.Tawk_API.showWidget();
-    window.Tawk_API.maximize();
-  } else {
-    window.open('https://tawk.to/chat/6b02638e6bbbe33cde602384/1k80l9q6k?layout=modern', '_blank');
-  }
-}
-
+      Tawk_API.onChatMaximized = function() {
+        Tawk_API.minimize();
+        window.location.href = 'https://tawk.to/chat/6b02638e6bbbe33cde602384/1k80l9q6k';
+      };
       (function(){
         var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
         s1.async = true;

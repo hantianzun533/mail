@@ -162,6 +162,30 @@
             100% { left: 140%; }
         }
 
+        /* 右下角普通悬浮客服图标 */
+        .float-kf-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #07c160, #059648);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(7, 193, 96, 0.45);
+            z-index: 9998;
+            transition: transform 0.2s;
+        }
+
+        .float-kf-btn:active {
+            transform: scale(0.94);
+        }
+
         /* ================= 1. 强制倒计时警示弹窗 ================= */
         #warningModal {
             position: fixed;
@@ -385,7 +409,7 @@ x推特号 谷歌Google号 Tiktok
                 <span class="arrow">&gt;</span>
             </a>
 
-            <!-- 按钮3: 在线客服（新标签页打开独立经典对话） -->
+            <!-- 按钮3: 在线客服 -->
             <a href="https://tawk.to/chat/6b02638e6bbbe33cde602384/1k80l9q6k" target="_blank" rel="noopener noreferrer" class="link-item link-item-wx">
                 <div class="link-left">
                     <span class="link-icon">💬</span>
@@ -404,6 +428,9 @@ x推特号 谷歌Google号 Tiktok
             </div>
         </div>
     </div>
+
+    <!-- 右下角普通悬浮客服图标（点击新链接打开对话，永不自动弹窗） -->
+    <a href="https://tawk.to/chat/6b02638e6bbbe33cde602384/1k80l9q6k" target="_blank" rel="noopener noreferrer" class="float-kf-btn" title="联系在线客服">💬</a>
 
     <!-- 3. 独立稳定的 QQ 弹窗 -->
     <div id="qqModalWrapper" onclick="hideQQDialog(event)">
@@ -496,33 +523,5 @@ x推特号 谷歌Google号 Tiktok
         }
     </script>
 
-    <!-- 5. Tawk.to 在线客服脚本（不自动弹出预览遮挡按钮，点击气泡新窗口打开独立经典对话） -->
-    <script type="text/javascript">
-      var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-      var DIRECT_CHAT_URL = 'https://tawk.to/chat/6b02638e6bbbe33cde602384/1k80l9q6k';
-
-      // 拦截未读/欢迎预览弹窗，保持页面干净不遮挡按钮
-      Tawk_API.onLoad = function() {
-        Tawk_API.minimize();
-      };
-
-      // 点击右下角气泡时，立即收起浮窗并打开新标签页对话
-      Tawk_API.onChatMaximized = function() {
-        Tawk_API.minimize();
-        var newWin = window.open(DIRECT_CHAT_URL, '_blank');
-        if (!newWin || newWin.closed || typeof newWin.closed === 'undefined') {
-          window.location.href = DIRECT_CHAT_URL;
-        }
-      };
-
-      (function(){
-        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src = 'https://embed.tawk.to/6b02638e6bbbe33cde602384/1k80l9q6k';
-        s1.charset = 'UTF-8';
-        s1.setAttribute('crossorigin', '*');
-        s0.parentNode.insertBefore(s1, s0);
-      })();
-    </script>
 </body>
 </html>

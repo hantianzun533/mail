@@ -26,7 +26,7 @@
       z-index: 1;
     }
 
-    /* 顶层防白屏过渡遮罩（盖住底层加载中的空白） */
+    /* 顶层防白屏过渡遮罩 */
     #loadingMask {
       position: fixed;
       top: 0;
@@ -118,7 +118,7 @@
   <!-- 底层直接静默加载经典聊天页 -->
   <iframe id="chatFrame" src="https://tawk.to/chat/6b02638e6bbbe33cde602384/1k80l9q6k" allow="microphone; camera; clipboard-write"></iframe>
 
-  <!-- 顶层提示遮罩，彻底挡住加载过程 -->
+  <!-- 顶层提示遮罩 -->
   <div id="loadingMask">
     <div class="card">
       <div class="spinner"></div>
@@ -144,13 +144,13 @@
     function revealChat() {
       if (maskClosed) return;
       maskClosed = true;
+      document.title = '官方在线客服 - 海外账号批发';
       maskEl.style.opacity = '0';
       setTimeout(function() {
         maskEl.style.display = 'none';
       }, 350);
     }
 
-    // 实时正计时读秒
     setInterval(function() {
       if (maskClosed) return;
       sec++;
@@ -161,12 +161,10 @@
       }
     }, 1000);
 
-    // 当底层 iframe 触发 load 后，再多缓冲 2.5 秒等待内部 JS 渲染出对话框，然后丝滑揭开遮罩
     frameEl.onload = function() {
       setTimeout(revealChat, 2500);
     };
 
-    // 最长兜底：12 秒后无论如何自动揭开遮罩
     setTimeout(revealChat, 12000);
   </script>
 

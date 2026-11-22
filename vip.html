@@ -177,22 +177,26 @@ x推特号 谷歌Google号 Tiktok
         </div>
     </div>
 
-    <!-- Crisp 在线客服脚本（右下角常驻气泡 + 点击按钮双入口触发） -->
+    <!-- Tawk.to 在线客服脚本（右下角常驻气泡 + 点击按钮双入口触发） -->
     <script type="text/javascript">
-      window.$crisp = [];
-      window.CRISP_WEBSITE_ID = "ad791399-15c2-4ece-a6f1-30585a6987e8";
+      var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
 
       function openOnlineChat() {
-        $crisp.push(["do", "chat:show"]);
-        $crisp.push(["do", "chat:open"]);
+        if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
+          window.Tawk_API.showWidget();
+          window.Tawk_API.maximize();
+        } else {
+          window.open('https://tawk.to/chat/6b02638e6bbbe33cde602384/1k80l9q6k', '_blank');
+        }
       }
 
-      (function() {
-        var d = document;
-        var s = d.createElement("script");
-        s.src = "https://client.crisp.chat/l.js";
-        s.async = 1;
-        d.getElementsByTagName("head")[0].appendChild(s);
+      (function(){
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/6b02638e6bbbe33cde602384/1k80l9q6k';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
       })();
     </script>
 

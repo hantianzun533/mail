@@ -317,3 +317,206 @@
             cursor: pointer;
             transition: background 0.2s;
         }
+
+        .copy-btn:active {
+            background: #1565c0;
+        }
+    </style>
+
+    <!-- 百度统计探针 -->
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?428ba24cec82c4d3191afacc5a64ef74";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</head>
+<body>
+
+    <!-- 1. 强制阅读倒计时弹窗 -->
+    <div id="warningModal">
+        <div class="modal-card">
+            <div class="modal-header-icon">⚠️</div>
+            <div class="modal-title">平台安全合规重要提示</div>
+            <div class="modal-body">
+                电商平台<b>不回复任何海外注册购买账号等敏感话题，会封号！</b>你要的我们都有，咨询下单直接联系在线客服，<b>不要再返回电商平台，电商无人工客服，不回复任何咨询消息！</b>
+            </div>
+
+            <button id="submitBtn" class="confirm-btn" disabled>请仔细阅读重要提示 (5s)</button>
+        </div>
+    </div>
+
+    <!-- 2. 主导航内容容器 -->
+    <div class="container">
+        <!-- 头像区 -->
+        <div class="avatar">
+            <span class="avatar-icon">🌐</span>
+        </div>
+
+        <!-- 标题与介绍 -->
+        <h1>海外账号批发</h1>
+        <div class="desc">Tg飞机/电报成品号，+86号码登录问题
+x推特号 谷歌Google号 Tiktok
+苹果ID ins facebook gpt whatsapp
+网络代理（梯子、加速器、VPN）等等</div>
+
+        <div class="highlight-text">必看重点！！！人工发货与自动发货的产品业务不一样，你要的都有！请按需求选购</div>
+
+        <!-- 核心跳转按钮区 -->
+        <div class="links-container">
+            <!-- 按钮1: 人工发货区 -->
+            <a href="https://docs.qq.com/doc/DY29hbVROSGR2Z09q" target="_blank" class="link-item">
+                <div class="link-left">
+                    <span class="link-icon">⏩</span>
+                    <span>人工发货区</span>
+                </div>
+                <span class="arrow">&gt;</span>
+            </a>
+
+            <!-- 按钮2: 24小时自动发货区 -->
+            <a href="https://tgsss.com/CD70AD47" target="_blank" class="link-item">
+                <div class="link-left">
+                    <span class="link-icon">👉</span>
+                    <span>24小时自动发货区</span>
+                </div>
+                <span class="arrow">&gt;</span>
+            </a>
+
+            <!-- 按钮3: 在线客服（直连 Tawk.to 弹窗） -->
+            <a href="javascript:void(0);" onclick="openOnlineChat(); return false;" class="link-item link-item-wx">
+                <div class="link-left">
+                    <span class="link-icon">💬</span>
+                    <span>在线客服（重点推荐）</span>
+                </div>
+                <span class="arrow">&gt;</span>
+            </a>
+
+            <!-- 按钮4: 备用Q群 -->
+            <div class="link-item" onclick="showQQDialog(event)">
+                <div class="link-left">
+                    <span class="link-icon">🐧</span>
+                    <span>备用Q群</span>
+                </div>
+                <span class="arrow">&gt;</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. 独立稳定的 QQ 弹窗 -->
+    <div id="qqModalWrapper" onclick="hideQQDialog(event)">
+        <div class="qq-modal-card" onclick="event.stopPropagation()">
+            <span class="qq-close-x" onclick="forceCloseQQ()">✕</span>
+            <div style="font-size: 38px; margin-bottom: 6px;">🐧</div>
+            <h3 style="margin: 0; font-size: 17px; color: #222;">加入备用官方Q群</h3>
+            <div class="qq-box">
+                <span id="qqText" class="qq-number">716752493</span>
+            </div>
+            <p style="font-size: 12px; color: #888; margin: 0 0 16px;">点击下方按钮一键复制群号，打开手机QQ搜索即可</p>
+            <button id="copyQQBtn" class="copy-btn" onclick="executeCopyQQ()">一键复制群号</button>
+        </div>
+    </div>
+
+    <!-- 4. 逻辑脚本 -->
+    <script>
+        // 1. 倒计时提示框逻辑（5 秒）
+        let countdown = 5;
+        const submitBtn = document.getElementById('submitBtn');
+        const warningModal = document.getElementById('warningModal');
+
+        const timer = setInterval(() => {
+            countdown--;
+            if (countdown > 0) {
+                submitBtn.innerText = `请仔细阅读重要提示 (${countdown}s)`;
+            } else {
+                clearInterval(timer);
+                submitBtn.disabled = false;
+                submitBtn.classList.add('active');
+                submitBtn.innerText = '我已知晓并同意，确认进入';
+            }
+        }, 1000);
+
+        submitBtn.onclick = function() {
+            if (!this.disabled) {
+                warningModal.style.display = 'none';
+            }
+        };
+
+        // 2. QQ群弹窗与复制逻辑
+        const qqModalWrapper = document.getElementById('qqModalWrapper');
+        const copyQQBtn = document.getElementById('copyQQBtn');
+
+        function showQQDialog(e) {
+            if (e) e.stopPropagation();
+            qqModalWrapper.style.display = 'flex';
+        }
+
+        function hideQQDialog(e) {
+            if (e.target === qqModalWrapper) {
+                qqModalWrapper.style.display = 'none';
+            }
+        }
+
+        function forceCloseQQ() {
+            qqModalWrapper.style.display = 'none';
+        }
+
+        function executeCopyQQ() {
+            const text = '716752493';
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-9999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                document.execCommand('copy');
+                copySuccessFeedback();
+            } catch (err) {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(text).then(copySuccessFeedback);
+                }
+            } finally {
+                document.body.removeChild(textArea);
+            }
+        }
+
+        function copySuccessFeedback() {
+            copyQQBtn.innerText = '✅ 复制成功！去QQ搜索加入';
+            copyQQBtn.style.background = '#2e7d32';
+            setTimeout(() => {
+                copyQQBtn.innerText = '一键复制群号';
+                copyQQBtn.style.background = '#1976d2';
+                qqModalWrapper.style.display = 'none';
+            }, 1200);
+        }
+    </script>
+
+    <!-- 5. Tawk.to 在线客服脚本（右下角常驻气泡 + 点击绿色大按钮双入口触发） -->
+    <script type="text/javascript">
+      var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+
+      function openOnlineChat() {
+        if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
+          window.Tawk_API.showWidget();
+          window.Tawk_API.maximize();
+        } else {
+          window.open('https://tawk.to/chat/6b02638e6bbbe33cde602384/1k80l9q6k', '_blank');
+        }
+      }
+
+      (function(){
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/6b02638e6bbbe33cde602384/1k80l9q6k';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+      })();
+    </script>
+</body>
+</html>

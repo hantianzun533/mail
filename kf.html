@@ -2,21 +2,47 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
   <title>正在连接在线客服...</title>
   <style>
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #f4f5f7;
+    }
+
+    /* 底层全屏客服窗口 */
+    #chatFrame {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      z-index: 1;
+    }
+
+    /* 顶层防白屏过渡遮罩（盖住底层加载中的空白） */
+    #loadingMask {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background-color: #f4f5f7;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
       padding: 20px;
       box-sizing: border-box;
-      color: #333;
+      z-index: 9999;
+      transition: opacity 0.35s ease;
     }
+
     .card {
       background: #ffffff;
       width: 100%;
@@ -70,6 +96,8 @@
       border-radius: 8px;
       font-size: 14px;
       font-weight: bold;
+      cursor: pointer;
+      border: none;
     }
     .net-tip {
       margin-top: 20px;
@@ -86,23 +114,45 @@
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="spinner"></div>
-    <h2>正在为您连接人工客服...</h2>
-    <p>首次接入海外专线通道约需 <b>5～15 秒</b><br>系统正在分配客服坐席，请耐心稍候</p>
-    <div class="timer-badge" id="waitTimer">已安全连接中：1 秒...</div>
-    <br>
-    <a href="https://tawk.to/chat/6b02638e6bbbe33cde602384/1k80l9q6k" class="manual-btn">若超过 15 秒未进入，点此直达</a>
-    
-    <div class="net-tip">
-      💡 <b>网络小贴士：</b>如开着加速器长时间转圈无法进入，可能是当前节点拥堵，尝试切换<b>香港/新加坡/日本等亚太节点</b>即可秒开；急事也可直接加备用QQ群：<b>716752493</b>
+
+  <!-- 底层直接静默加载经典聊天页 -->
+  <iframe id="chatFrame" src="https://tawk.to/chat/6b02638e6bbbe33cde602384/1k80l9q6k" allow="microphone; camera; clipboard-write"></iframe>
+
+  <!-- 顶层提示遮罩，彻底挡住加载过程 -->
+  <div id="loadingMask">
+    <div class="card">
+      <div class="spinner"></div>
+      <h2>正在为您连接人工客服...</h2>
+      <p>首次接入海外专线通道约需 <b>5～15 秒</b><br>系统正在分配客服坐席，请耐心稍候</p>
+      <div class="timer-badge" id="waitTimer">已安全连接中：1 秒...</div>
+      <br>
+      <button class="manual-btn" onclick="revealChat()">如已加载完成，点此立即进入</button>
+      
+      <div class="net-tip">
+        💡 <b>网络小贴士：</b>如开着加速器长时间转圈无法进入，可能是当前节点拥堵，尝试切换<b>香港/新加坡/日本等亚太节点</b>即可秒开；急事也可直接加备用QQ群：<b>716752493</b>
+      </div>
     </div>
   </div>
 
   <script>
     var sec = 1;
+    var maskClosed = false;
     var timerEl = document.getElementById('waitTimer');
+    var maskEl = document.getElementById('loadingMask');
+    var frameEl = document.getElementById('chatFrame');
+
+    function revealChat() {
+      if (maskClosed) return;
+      maskClosed = true;
+      maskEl.style.opacity = '0';
+      setTimeout(function() {
+        maskEl.style.display = 'none';
+      }, 350);
+    }
+
+    // 实时正计时读秒
     setInterval(function() {
+      if (maskClosed) return;
       sec++;
       if (sec <= 15) {
         timerEl.innerText = '已安全连接中：' + sec + ' 秒...';
@@ -111,9 +161,14 @@
       }
     }, 1000);
 
-    setTimeout(function() {
-      window.location.replace("https://tawk.to/chat/6b02638e6bbbe33cde602384/1k80l9q6k");
-    }, 600);
+    // 当底层 iframe 触发 load 后，再多缓冲 2.5 秒等待内部 JS 渲染出对话框，然后丝滑揭开遮罩
+    frameEl.onload = function() {
+      setTimeout(revealChat, 2500);
+    };
+
+    // 最长兜底：12 秒后无论如何自动揭开遮罩
+    setTimeout(revealChat, 12000);
   </script>
+
 </body>
 </html>

@@ -161,11 +161,12 @@
       }
     }, 1000);
 
+    // 底层 HTML 响应后多留 5 秒给内部 JS 彻底画完对话框，实现零白屏切换
     frameEl.onload = function() {
-      setTimeout(revealChat, 2500);
+      setTimeout(revealChat, 5000);
     };
 
-    setTimeout(revealChat, 12000);
+    setTimeout(revealChat, 15000);
   </script>
 
 </body>

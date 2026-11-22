@@ -20,8 +20,8 @@
     .card {
       background: #ffffff;
       width: 100%;
-      max-width: 360px;
-      padding: 36px 24px;
+      max-width: 370px;
+      padding: 36px 24px 28px;
       border-radius: 18px;
       box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
       text-align: center;
@@ -47,12 +47,23 @@
     p {
       font-size: 13.5px;
       color: #666;
-      line-height: 1.6;
-      margin: 0 0 22px;
+      line-height: 1.65;
+      margin: 0 0 18px;
+    }
+    .timer-badge {
+      display: inline-block;
+      background: #f0fdf4;
+      color: #059648;
+      border: 1px solid #bbf7d0;
+      font-size: 13px;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
     }
     .manual-btn {
       display: inline-block;
-      padding: 10px 22px;
+      padding: 11px 22px;
       background-color: #07c160;
       color: #fff;
       text-decoration: none;
@@ -60,18 +71,46 @@
       font-size: 14px;
       font-weight: bold;
     }
+    .net-tip {
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px dashed #eee;
+      font-size: 12px;
+      color: #888;
+      line-height: 1.6;
+      text-align: left;
+    }
+    .net-tip b {
+      color: #555;
+    }
   </style>
 </head>
 <body>
   <div class="card">
     <div class="spinner"></div>
     <h2>正在为您连接人工客服...</h2>
-    <p>系统正在分配专属客服通道，一般需要 2～4 秒<br>请稍候，切勿关闭当前页面</p>
-    <a href="https://tawk.to/chat/6b02638e6bbbe33cde602384/1k80l9q6k" class="manual-btn">如长时间未进入，点此立即进入</a>
+    <p>首次接入海外专线通道约需 <b>5～15 秒</b><br>系统正在分配客服坐席，请耐心稍候</p>
+    <div class="timer-badge" id="waitTimer">已安全连接中：1 秒...</div>
+    <br>
+    <a href="https://tawk.to/chat/6b02638e6bbbe33cde602384/1k80l9q6k" class="manual-btn">若超过 15 秒未进入，点此直达</a>
+    
+    <div class="net-tip">
+      💡 <b>网络小贴士：</b>如开着加速器长时间转圈无法进入，可能是当前节点拥堵，尝试切换<b>香港/新加坡/日本等亚太节点</b>即可秒开；急事也可直接加备用QQ群：<b>716752493</b>
+    </div>
   </div>
 
   <script>
-    // 停留 0.6 秒确保过渡动画渲染出来后再发起跳转，跳转期间浏览器会一直保留当前提示页直到新页面响应
+    var sec = 1;
+    var timerEl = document.getElementById('waitTimer');
+    setInterval(function() {
+      sec++;
+      if (sec <= 15) {
+        timerEl.innerText = '已安全连接中：' + sec + ' 秒...';
+      } else {
+        timerEl.innerText = '当前节点较慢，正在努力接入（' + sec + ' 秒）...';
+      }
+    }, 1000);
+
     setTimeout(function() {
       window.location.replace("https://tawk.to/chat/6b02638e6bbbe33cde602384/1k80l9q6k");
     }, 600);

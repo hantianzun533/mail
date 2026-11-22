@@ -4,7 +4,7 @@
 | :--- | :--- | :--- |
 | `index.html` |https://tgfff.com/index.html | 天启网页取邮件套壳源码
 | `vip.html` | https://tgfff.com/vip.html https://tgfff.com/ | **核心业务导航页**：已接入 tawk.to 在线客服弹窗，用于私域引导与发卡导航 |
-| `kf.html` | https://tgfff.com/kf | **专属客服直链中转页**：访问后秒跳全屏 Crisp 在线客服对话框（也可访问 `https://tgfff.com/kf.html`） |
+| `kf.html` | https://tgfff.com/kf | **专属客服直链中转页**：访问后秒跳全屏tawk.to 在线客服对话框（也可访问 `https://tgfff.com/kf.html`） |
 | `nav.html` | https://tgfff.com/nav.html https://mail.tgfff.com/nav.html | 电商客户专用广告界面
 | `wx.html` | https://tgfff.com/wx.html | 早期微信展示页（已停用高危联系方式，建议留作备份或按需清理） |
 | `wx.png` | https://tgfff.com/wx.png | 早期二维码图片资源（与 `wx.html` 配套） |
